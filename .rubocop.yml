@@ -1,9 +1,11 @@
 AllCops:
+  TargetRubyVersion: 2.6
   NewCops: enable
   Exclude:
     - "Guardfile"
     - "Rakefile"
     - "node_modules/**/*"
+    - "bin/*"
 
   DisplayCopNames: true
 
@@ -16,7 +18,7 @@ Metrics/AbcSize:
 Metrics/ClassLength:
   Max: 150
 Metrics/BlockLength:
-  IgnoredMethods: ['describe']
+  AllowedMethods: ['describe']
   Max: 30
 
 
@@ -50,3 +52,4 @@ Style/HashTransformKeys:
   Enabled: false
 Style/HashTransformValues:
   Enabled: false
+  
