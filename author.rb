@@ -1,7 +1,7 @@
 require 'date'
 require_relative './item'
 
-class Author < Item # I need create Item class into item file
+class Author < Item
   attr_accessor :first_name, :last_name
   attr_reader :id, :items
 
