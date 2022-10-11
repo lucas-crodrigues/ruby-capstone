@@ -3,7 +3,7 @@ require_relative './catalog'
 class App
   def initialize
     @things = Catalog.new
-    #read_data
+    # read_data
     print_menu
   end
 
