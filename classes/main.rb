@@ -4,7 +4,7 @@ def main
   puts '***-----------------------------------------------------------***'
   puts '        Welcome to catalog of my things'
   puts "***-----------------------------------------------------------***\n"
-  app = App.new
+  App.new
 end
 
 main

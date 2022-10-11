@@ -3,38 +3,38 @@ require_relative './catalog'
 class App
   def initialize
     @things = Catalog.new
-    read_data
+    #read_data
     print_menu
   end
 
   def print_menu
     options = {
-      1=>'List all Books',
-      2=>'List all Music Albums',
-      3=>'List all Games',
-      4=>'List all Genres',
-      5=>'List all Tables',
-      6=>'List all Labels',
-      7=>'List all Authors',
-      8=>'List all Sources',
-      10=>'Add a Book',
-      11=>'Add a Music Album',
-      12=>'Add a Game',
-      13=>'Exit App'
+      1 => 'List all Books',
+      2 => 'List all Music Albums',
+      3 => 'List all Games',
+      4 => 'List all Genres',
+      5 => 'List all Tables',
+      6 => 'List all Labels',
+      7 => 'List all Authors',
+      8 => 'List all Sources',
+      10 => 'Add a Book',
+      11 => 'Add a Music Album',
+      12 => 'Add a Game',
+      13 => 'Exit App'
     }
     loop do
       options.each { |k, v| print "#{k} - #{v} \n" }
       choice = gets.chomp.to_i
-      if choice == 13 then
+      if choice == 13
         puts "\nThank you for using the app\n"
-        save_data
+        # save_data
         break
       end
       choice_menu(choice)
     end
   end
 
-  def choice_menu(choice)
+  def choice_menu(choice) # rubocop:disable Metrics/CyclomaticComplexity
     case choice
     when 1
       1
