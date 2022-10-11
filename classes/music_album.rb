@@ -1,11 +1,24 @@
 require './item'
 
-class MusicAlbum < Item
+class Album < Item
   attr_reader :on_spotify
 
   def initialize(publish_date, on_spotify)
     super(publish_date, id)
     @on_spotify - on_spotify
+  end
+
+  def as_hash
+    {
+      'id' => @id,
+      'genre' => @genre,
+      'author' => @author,
+      'source' => @source,
+      'label' => @label,
+      'publish_date' => @publish_date,
+      'archived' => @archived,
+      'on_spotify' => @on_spotify
+    }
   end
 
   private
