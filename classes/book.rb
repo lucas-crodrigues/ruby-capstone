@@ -1,8 +1,9 @@
-require_relative './item.rb'
+require_relative './item'
 
-class Book << Item
+class Book < Item
   attr_accessor :publisher, :cover_state
-  def initialize(publish_date,publisher, cover_state)
+
+  def initialize(publish_date, publisher, cover_state)
     super(publish_date)
     @publisher = publisher
     @cover_state = cover_state
@@ -10,7 +11,7 @@ class Book << Item
 
   def as_hash
     {
-      'id'=> @id,
+      'id' => @id,
       'genre' => @genre,
       'author' => @author,
       'source' => @source,
