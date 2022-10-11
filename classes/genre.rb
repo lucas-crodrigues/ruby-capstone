@@ -15,7 +15,7 @@ class Genre
 
   def as_hash
     {
-      'name' => @name,
+      'name' => @name
     }
   end
 end

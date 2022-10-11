@@ -5,7 +5,7 @@ class Album < Item
 
   def initialize(publish_date, on_spotify)
     super(publish_date, id)
-    @on_spotify - on_spotify
+    @on_spotify = on_spotify
   end
 
   def as_hash
