@@ -12,24 +12,22 @@ class Item
 
   def genre=(genre)
     @genre = genre
-    genre.items << self unless genre.items.includes(self)
+    genre.items << self unless genre.items.include?(self)
   end
 
   def author=(author)
-    author.is_a?(Author) && @author.nil? && (
-      @author = author
-      author.add_item(self)
-    )
+    @author = author
+    author.items << self unless author.items.include?(self)
   end
 
   def source=(source)
     @source = source
-    source.items << self unless source.items.includes(self)
+    source.items << self unless source.items.include?(self)
   end
 
   def label=(label)
     @label = label
-    label.items << self unless label.items.includes(self)
+    label.items << self unless label.items.include?(self)
   end
 
   def move_to_archive
