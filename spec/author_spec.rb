@@ -10,10 +10,6 @@ describe 'Unit Tests for Author' do
       expect(@author).to be_instance_of Author
     end
 
-    it 'should be an Item' do
-      expect(@author).to be_kind_of Item
-    end
-
     it 'should not be an Item' do
       expect(@author).not_to be_instance_of Item
     end
