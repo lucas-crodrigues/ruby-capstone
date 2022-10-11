@@ -2,7 +2,7 @@ require_relative '../classes/game'
 
 describe 'Unit Tests for Game' do
   before :each do
-    @game = Game.new('1997/09/24', 'No', '2007/04/22')
+    @game = Game.new('1997/09/24', 'Yes', '2007/04/22')
   end
 
   context 'initialize object' do
@@ -30,8 +30,8 @@ describe 'Unit Tests for Game' do
       end
     end
     context 'Multiplayer Game' do
-      it 'should be "No"' do
-        expect(@game.multiplayer).to eql 'No'
+      it 'should be "Yes"' do
+        expect(@game.multiplayer).to eql 'Yes'
       end
     end
   end
