@@ -12,6 +12,15 @@ class Game < Item
     @archived = can_be_archived?
   end
 
+  def as_hash
+    {
+      'multiplayer' => @multiplayer,
+      'last_played' => @last_played,
+      'publish_date' => @publish_date,
+      'archived' => @archived,
+    }
+  end
+
   private
 
   def can_be_archived?

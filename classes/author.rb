@@ -13,4 +13,12 @@ class Author
     @items << item unless @item.include?(item)
     item.author = self
   end
+
+  def as_hash
+    {
+      'id' => @id,
+      'first_name' => @first_name,
+      'last_name' => @last_name
+    }
+  end
 end
