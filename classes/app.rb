@@ -11,6 +11,17 @@ class App
     print_menu
   end
 
+  def choose_label
+    list_labels
+    puts 'Choose label by number or enter "n" to add a new label'
+    input = gets.chomp
+    if input.downcase == 'n'
+      add_label
+      return @things.labels.last
+    end
+    @things.labels[input.to_i] unless @things.labels[input.to_i].nil?
+  end
+
   def add_book
     puts 'Please fill below book data:'
     puts 'Publish date:'
@@ -19,7 +30,33 @@ class App
     publisher = gets.chomp
     puts 'Cover state:'
     cover_state = gets.chomp
-    @things.add_book(Book.new(publish_date, publisher, cover_state))
+    book = Book.new(publish_date, publisher, cover_state)
+    label = choose_label
+    book.label = label if label.is_a? Label
+    @things.add_book(book)
+    puts 'Book added successfuly'
+    puts 'Press enter to continue'
+    gets.chomp
+  end
+
+  def add_label
+    puts 'Please fill below label data:'
+    print 'Title: '
+    title = gets.chomp
+    print 'Color: '
+    color = gets.chomp
+    @things.add_label(Label.new(title, color))
+    puts 'Label added successfuly'
+    puts 'Press enter to continue'
+    gets.chomp
+  end
+
+  def list(list)
+    list.each_with_index do |item, idx|
+      print "#{idx}-"
+      item.as_hash.each { |key, value| print "#{key}: #{value}   " unless value == '' }
+      puts
+    end
   end
 
   def read_data
@@ -55,61 +92,64 @@ class App
     end
   end
 
-  def print_menu
-    options = {
-      1 => 'List all Books',
-      2 => 'List all Music Albums',
-      3 => 'List all Games',
-      4 => 'List all Genres',
-      5 => 'List all Tables',
-      6 => 'List all Labels',
-      7 => 'List all Authors',
-      8 => 'List all Sources',
-      10 => 'Add a Book',
-      11 => 'Add a Music Album',
-      12 => 'Add a Game',
-      13 => 'Exit App'
+  def list_books
+    puts '------------Books List-----------'
+    list(@things.books)
+    puts '----------End of the List----------'
+  end
+
+  def list_labels
+    puts '------------Labels List-----------'
+    list(@things.labels)
+    puts '----------End of the List----------'
+  end
+
+  def options
+    {
+      1 =>
+      { text: 'List all books', action: proc { list_books } },
+      2 =>
+     { text: 'List all Music Albums', action: proc { puts 'Method not implemented yet' } },
+      3 =>
+     { text: 'List all Games', action: proc { puts 'Method not implemented yet' } },
+      4 =>
+     { text: 'List all Genres', action: proc { puts 'Method not implemented yet' } },
+      5 =>
+     { text: 'List all Labels', action: proc { list_labels } },
+      6 =>
+     { text: 'List all Authors', action: proc { puts 'Method not implemented yet' } },
+      7 =>
+     { text: 'List all Sources', action: proc { puts 'Method not implemented yet' } },
+      8 =>
+     { text: 'Add a Book', action: proc { add_book } },
+      9 =>
+     { text: 'Add a Music Album', action: proc { puts 'Method not implemented yet' } },
+      10 =>
+     { text: 'Add a Game', action: proc { puts 'Method not implemented yet' } },
+      11 =>
+     { text: 'Add a Label', action: proc { add_label } },
+      12 =>
+     { text: 'Exit App', action: proc { puts 'Method not implemented yet' } }
     }
+  end
+
+  def print_menu
     loop do
-      options.each { |k, v| print "#{k} - #{v} \n" }
+      options.each { |k, v| print "#{k} - #{v[:text]} \n" }
       choice = gets.chomp.to_i
-      if choice == 13
+      if choice == options.keys.last
         puts "\nThank you for using the app\n"
         save_data
         break
       end
+      puts `clear`
       choice_menu(choice)
     end
   end
 
-  def choice_menu(choice) # rubocop:disable Metrics/CyclomaticComplexity
-    case choice
-    when 1
-      @things.books.each { |book| puts book }
-    when 2
-      2
-    when 3
-      3
-    when 4
-      4
-    when 5
-      5
-    when 6
-      6
-    when 7
-      7
-    when 8
-      8
-    when 9
-      9
-    when 10
-      add_book
-    when 11
-      11
-    when 12
-      12
-    else
-      puts "\nPlease input a valid option\n"
-    end
+  def choice_menu(choice)
+    return unless options.keys.include?(choice)
+
+    options[choice][:action].call
   end
 end

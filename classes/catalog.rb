@@ -12,7 +12,6 @@ class Catalog
   end
 
   def add_book(book)
-    puts 'book added'
     @books << book
   end
 
@@ -24,19 +23,19 @@ class Catalog
     @games << game
   end
 
-  def add_genre
+  def add_genre(genre)
     @genres << genre
   end
 
-  def add_source
+  def add_source(source)
     @sources << source
   end
 
-  def add_author
+  def add_author(author)
     @authors << author
   end
 
-  def add_label
+  def add_label(label)
     @labels << label
   end
 end
