@@ -1,10 +1,66 @@
 require_relative './catalog'
+require_relative './book'
+require_relative './label'
 
 class App
   def initialize
     @things = Catalog.new
     # read_data
     print_menu
+  end
+
+  def add_book
+    puts 'Please fill below book data:'
+    puts 'Publish date:'
+    publish_date = gets.chomp
+    puts 'Publesher:'
+    publisher = gets.chomp
+    puts 'Cover state:'
+    cover_state = gets.chomp
+    @things.add_book(Book.new(publish_date, publisher, cover_state))
+  end
+
+  def read_data
+    if File.exist?('./app_data/books.json')
+      books = []
+      File.foreach('./app_data/books.json') { |book| books << JSON.parse(book) }
+      books.each do |book|
+        book.each do |b|
+          @things.add_book(Book.new(JSON.parse(b)['publish_date'], JSON.parse(b)['publisher'],
+                                    JSON.parse(book)['cover_state']))
+        end
+      end
+    end
+
+    return unless File.exist?('./app_data/labels.json')
+
+    labels = []
+    File.foreach('./app_data/labels.json') { |label| labels << JSON.parse(label) }
+    labels.each do |label|
+      label.each do |l|
+        @things.add_label(Label.new(JSON.parse(l)['title'], JSON.parse(l)['color']))
+      end
+    end
+  end
+
+  def save_data
+    FileUtils.mkdir_p('./app_data/')
+    FileUtils.cd('./app_data/') do
+      FileUtils.rm_f('books.json')
+      FileUtils.rm_f('labels.json')
+      FileUtils.touch('books.json')
+      FileUtils.touch('labels.json')
+
+      # generate json object
+      books_json = []
+      @things.books.each { |book| books_json << JSON.generate(book.as_hash) }
+      labels_json = []
+      @things.labels.each { |label| labels_json << JSON.generate(label.as_hash) }
+
+      # write data to their respective files
+      File.write('books.json', books_json)
+      File.write('labels.json', labels_json)
+    end
   end
 
   def print_menu
@@ -27,7 +83,7 @@ class App
       choice = gets.chomp.to_i
       if choice == 13
         puts "\nThank you for using the app\n"
-        # save_data
+        save_data
         break
       end
       choice_menu(choice)
