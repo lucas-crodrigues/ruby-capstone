@@ -1,3 +1,5 @@
+require 'fileutils'
+require 'json'
 require_relative './catalog'
 require_relative './book'
 require_relative './label'
@@ -44,22 +46,21 @@ class App
   end
 
   def save_data
+    save_list('books.json', @things.books)
+    save_list('labels.json', @things.labels)
+
+  end
+
+  def save_list(file_name, list)
     FileUtils.mkdir_p('./app_data/')
     FileUtils.cd('./app_data/') do
-      FileUtils.rm_f('books.json')
-      FileUtils.rm_f('labels.json')
-      FileUtils.touch('books.json')
-      FileUtils.touch('labels.json')
 
       # generate json object
-      books_json = []
-      @things.books.each { |book| books_json << JSON.generate(book.as_hash) }
-      labels_json = []
-      @things.labels.each { |label| labels_json << JSON.generate(label.as_hash) }
+      list_json = []
+      list.each { |item| list_json << item.as_hash }
 
       # write data to their respective files
-      File.write('books.json', books_json)
-      File.write('labels.json', labels_json)
+      File.write(file_name, JSON.pretty_generate(list_json))
     end
   end
 
@@ -111,7 +112,7 @@ class App
     when 9
       9
     when 10
-      10
+      add_book
     when 11
       11
     when 12
