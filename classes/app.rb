@@ -226,7 +226,7 @@ class App
       9 => { text: 'Add a Game', action: proc { add_game } },
       10 => { text: 'Add a Label', action: proc { add_label } },
       11 => { text: 'Add a Genre', action: proc { add_genre } },
-      12 => { text: 'Exit App'}
+      12 => { text: 'Exit App' }
     }
   end
 
