@@ -1,4 +1,4 @@
-require './item'
+require_relative './item'
 
 class Album < Item
   attr_accessor :on_spotify
@@ -11,10 +11,10 @@ class Album < Item
   def as_hash
     {
       'id' => @id,
-      'genre' => @genre,
-      'author' => @author,
-      'source' => @source,
-      'label' => @label,
+      'genre' => @genre.nil? ? '' : @genre.as_hash,
+      'author' => @author.nil? ? '' : @author.as_hash,
+      'source' => @source.nil? ? '' : @source,
+      'label' => @label.nil? ? '' : @label.as_hash,
       'publish_date' => @publish_date,
       'archived' => @archived,
       'on_spotify' => @on_spotify
