@@ -141,6 +141,8 @@ class App
     puts '------------Books List-----------'
     list(@things.books)
     puts '----------End of the List----------'
+    puts 'Press enter to continue'
+    gets.chomp
   end
 
   def list_albums
@@ -166,7 +168,12 @@ class App
       1 =>
       { text: 'List all books', action: proc { list_books } },
       2 =>
-     { text: 'List all Music Albums', action: proc { list_albums } },
+     { text: 'List all Music Albums', action: proc do 
+      list_albums
+      puts 'Press enter to continue'
+      gets.chomp
+     end
+     },
       3 =>
      { text: 'List all Games', action: proc { puts 'Method not implemented yet' } },
       4 =>
@@ -201,7 +208,7 @@ class App
         save_data
         break
       end
-      # puts `clear`
+      puts "\e[H\e[2J"
       choice_menu(choice)
     end
   end
