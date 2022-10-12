@@ -15,7 +15,7 @@ class Book < Item
       'genre' => @genre.nil? ? '' : @genre,
       'author' => @author.nil? ? '' : @author,
       'source' => @source.nil? ? '' : @source,
-      'label' => @label.nil? ? '' : @label,
+      'label' => @label.nil? ? '' : @label.as_hash,
       'publish_date' => @publish_date,
       'archived' => @archived,
       'publisher' => @publisher,
