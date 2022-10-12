@@ -1,10 +1,58 @@
+require 'fileutils'
+require 'json'
 require_relative './catalog'
+require_relative './book'
+require_relative './label'
 
 class App
   def initialize
     @things = Catalog.new
-    # read_data
+    read_data
     print_menu
+  end
+
+  def add_book
+    puts 'Please fill below book data:'
+    puts 'Publish date:'
+    publish_date = gets.chomp
+    puts 'Publesher:'
+    publisher = gets.chomp
+    puts 'Cover state:'
+    cover_state = gets.chomp
+    @things.add_book(Book.new(publish_date, publisher, cover_state))
+  end
+
+  def read_data
+    read_list('books.json') do |item|
+      @things.add_book(Book.new(item['publish_date'], item['publisher'],
+                                item['cover_state']))
+    end
+    read_list('labels.json') { |item| @things.add_label(Label.new(item['title'], item['color'])) }
+  end
+
+  def read_list(file_name, &block)
+    return unless File.exist?("./app_data/#{file_name}")
+
+    items = JSON.parse(File.read("./app_data/#{file_name}"))
+
+    items.each(&block)
+  end
+
+  def save_data
+    save_list('books.json', @things.books)
+    save_list('labels.json', @things.labels)
+  end
+
+  def save_list(file_name, list)
+    FileUtils.mkdir_p('./app_da,ta/')
+    FileUtils.cd('./app_data/') do
+      # generate json object
+      list_json = []
+      list.each { |item| list_json << item.as_hash }
+
+      # write data to their respective files
+      File.write(file_name, JSON.pretty_generate(list_json))
+    end
   end
 
   def print_menu
@@ -27,7 +75,7 @@ class App
       choice = gets.chomp.to_i
       if choice == 13
         puts "\nThank you for using the app\n"
-        # save_data
+        save_data
         break
       end
       choice_menu(choice)
@@ -37,7 +85,7 @@ class App
   def choice_menu(choice) # rubocop:disable Metrics/CyclomaticComplexity
     case choice
     when 1
-      1
+      @things.books.each { |book| puts book }
     when 2
       2
     when 3
@@ -55,7 +103,7 @@ class App
     when 9
       9
     when 10
-      10
+      add_book
     when 11
       11
     when 12

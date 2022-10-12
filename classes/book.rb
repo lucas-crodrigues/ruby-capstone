@@ -12,10 +12,10 @@ class Book < Item
   def as_hash
     {
       'id' => @id,
-      'genre' => @genre,
-      'author' => @author,
-      'source' => @source,
-      'label' => @label,
+      'genre' => @genre.nil? ? '' : @genre,
+      'author' => @author.nil? ? '' : @author,
+      'source' => @source.nil? ? '' : @source,
+      'label' => @label.nil? ? '' : @label,
       'publish_date' => @publish_date,
       'archived' => @archived,
       'publisher' => @publisher,
