@@ -165,37 +165,23 @@ class App
 
   def options
     {
-      1 =>
-      { text: 'List all books', action: proc { list_books } },
-      2 =>
-     { text: 'List all Music Albums', action: proc do 
-      list_albums
-      puts 'Press enter to continue'
-      gets.chomp
-     end
-     },
-      3 =>
-     { text: 'List all Games', action: proc { puts 'Method not implemented yet' } },
-      4 =>
-     { text: 'List all Genres', action: proc { list_genres } },
-      5 =>
-     { text: 'List all Labels', action: proc { list_labels } },
-      6 =>
-     { text: 'List all Authors', action: proc { puts 'Method not implemented yet' } },
-      7 =>
-     { text: 'List all Sources', action: proc { puts 'Method not implemented yet' } },
-      8 =>
-     { text: 'Add a Book', action: proc { add_book } },
-      9 =>
-     { text: 'Add a Music Album', action: proc { add_album } },
-      10 =>
-     { text: 'Add a Game', action: proc { puts 'Method not implemented yet' } },
-      11 =>
-     { text: 'Add a Label', action: proc { add_label } },
-      12 =>
-     { text: 'Add a Genre', action: proc { add_genre } },
-      13 =>
-     { text: 'Exit App', action: proc { puts 'Method not implemented yet' } }
+      1 => { text: 'List all books', action: proc { list_books } },
+      2 => { text: 'List all Music Albums', action: proc do
+                                                      list_albums
+                                                      puts 'Press enter to continue'
+                                                      gets.chomp
+                                                    end },
+      3 => { text: 'List all Games', action: proc { puts 'Method not implemented yet' } },
+      4 => { text: 'List all Genres', action: proc { list_genres } },
+      5 => { text: 'List all Labels', action: proc { list_labels } },
+      6 => { text: 'List all Authors', action: proc { puts 'Method not implemented yet' } },
+      7 => { text: 'List all Sources', action: proc { puts 'Method not implemented yet' } },
+      8 => { text: 'Add a Book', action: proc { add_book } },
+      9 => { text: 'Add a Music Album', action: proc { add_album } },
+      10 => { text: 'Add a Game', action: proc { puts 'Method not implemented yet' } },
+      11 => { text: 'Add a Label', action: proc { add_label } },
+      12 => { text: 'Add a Genre', action: proc { add_genre } },
+      13 => { text: 'Exit App', action: proc { puts 'Method not implemented yet' } }
     }
   end
 
