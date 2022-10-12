@@ -6,6 +6,7 @@ require_relative './label'
 require_relative './music_album'
 require_relative './genre'
 require_relative './author'
+require_relative './game'
 
 class App
   def initialize
@@ -71,6 +72,21 @@ class App
     gets.chomp
   end
 
+  def add_game
+    puts 'Please fill below game data:'
+    puts 'Publish date:'
+    publish_date = gets.chomp
+    puts 'Last played:'
+    last_played = gets.chomp
+    puts 'Multiplayer:'
+    multiplayer = gets.chomp
+    game = Game.new(publish_date, last_played, multiplayer)
+    @things.add_game(game)
+    puts 'Game added successfuly'
+    puts 'Press enter to continue'
+    gets.chomp
+  end
+
   def add_label
     puts 'Please fill below label data:'
     print 'Title: '
@@ -93,6 +109,18 @@ class App
     gets.chomp
   end
 
+  def add_author
+    puts 'Please fill below author data:'
+    print 'First Name: '
+    first_name = gets.chomp
+    print 'Last Name: '
+    last_name = gets.chomp
+    @things.add_author(Author.new(first_name, last_name))
+    puts 'Author added successfuly'
+    puts 'Press enter to continue'
+    gets.chomp
+  end
+
   def list(list)
     list.each_with_index do |item, idx|
       print "#{idx}-"
@@ -108,6 +136,10 @@ class App
     read_list('labels.json') { |item| @things.add_label(Label.new(item['title'], item['color'])) }
     read_list('albums.json') { |item| @things.add_album(Album.new(item['publish_date'], item['on_spotify'])) }
     read_list('genres.json') { |item| @things.add_genre(Genre.new(item['name'])) }
+    read_list('games.json') do |item|
+      @things.add_book(Game.new(item['publish_date'], item['last_played'], item['multiplayer']))
+    end
+    read_list('authors.json') { |item| @things.add_label(Author.new(item['first_name'], item['last_name'])) }
   end
 
   def read_list(file_name, &block)
@@ -123,6 +155,8 @@ class App
     save_list('labels.json', @things.labels)
     save_list('genres.json', @things.genres)
     save_list('albums.json', @things.albums)
+    save_list('games.json', @things.games)
+    save_list('authors.json', @things.authors)
   end
 
   def save_list(file_name, list)
@@ -151,6 +185,12 @@ class App
     puts '----------End of the List----------'
   end
 
+  def list_games
+    puts '------------Games List-----------'
+    list(@things.games)
+    puts '----------End of the List----------'
+  end
+
   def list_labels
     puts '------------Labels List-----------'
     list(@things.labels)
@@ -163,6 +203,12 @@ class App
     puts '----------End of the List----------'
   end
 
+  def list_authors
+    puts '------------Authors List-----------'
+    list(@things.authors)
+    puts '----------End of the List----------'
+  end
+
   def options
     {
       1 => { text: 'List all books', action: proc { list_books } },
@@ -171,17 +217,16 @@ class App
                                                       puts 'Press enter to continue'
                                                       gets.chomp
                                                     end },
-      3 => { text: 'List all Games', action: proc { puts 'Method not implemented yet' } },
+      3 => { text: 'List all Games', action: proc { list_games } },
       4 => { text: 'List all Genres', action: proc { list_genres } },
       5 => { text: 'List all Labels', action: proc { list_labels } },
-      6 => { text: 'List all Authors', action: proc { puts 'Method not implemented yet' } },
-      7 => { text: 'List all Sources', action: proc { puts 'Method not implemented yet' } },
-      8 => { text: 'Add a Book', action: proc { add_book } },
-      9 => { text: 'Add a Music Album', action: proc { add_album } },
-      10 => { text: 'Add a Game', action: proc { puts 'Method not implemented yet' } },
-      11 => { text: 'Add a Label', action: proc { add_label } },
-      12 => { text: 'Add a Genre', action: proc { add_genre } },
-      13 => { text: 'Exit App', action: proc { puts 'Method not implemented yet' } }
+      6 => { text: 'List all Authors', action: proc { list_authors } },
+      7 => { text: 'Add a Book', action: proc { add_book } },
+      8 => { text: 'Add a Music Album', action: proc { add_album } },
+      9 => { text: 'Add a Game', action: proc { add_game } },
+      10 => { text: 'Add a Label', action: proc { add_label } },
+      11 => { text: 'Add a Genre', action: proc { add_genre } },
+      12 => { text: 'Exit App' }
     }
   end
 
