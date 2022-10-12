@@ -7,7 +7,7 @@ require_relative './label'
 class App
   def initialize
     @things = Catalog.new
-    # read_data
+    read_data
     print_menu
   end
 
@@ -23,38 +23,29 @@ class App
   end
 
   def read_data
-    if File.exist?('./app_data/books.json')
-      books = []
-      File.foreach('./app_data/books.json') { |book| books << JSON.parse(book) }
-      books.each do |book|
-        book.each do |b|
-          @things.add_book(Book.new(JSON.parse(b)['publish_date'], JSON.parse(b)['publisher'],
-                                    JSON.parse(book)['cover_state']))
-        end
-      end
+    read_list('books.json') do |item|
+      @things.add_book(Book.new(item['publish_date'], item['publisher'],
+                                item['cover_state']))
     end
+    read_list('labels.json') { |item| @things.add_label(Label.new(item['title'], item['color'])) }
+  end
 
-    return unless File.exist?('./app_data/labels.json')
+  def read_list(file_name, &block)
+    return unless File.exist?("./app_data/#{file_name}")
 
-    labels = []
-    File.foreach('./app_data/labels.json') { |label| labels << JSON.parse(label) }
-    labels.each do |label|
-      label.each do |l|
-        @things.add_label(Label.new(JSON.parse(l)['title'], JSON.parse(l)['color']))
-      end
-    end
+    items = JSON.parse(File.read("./app_data/#{file_name}"))
+
+    items.each(&block)
   end
 
   def save_data
     save_list('books.json', @things.books)
     save_list('labels.json', @things.labels)
-
   end
 
   def save_list(file_name, list)
-    FileUtils.mkdir_p('./app_data/')
+    FileUtils.mkdir_p('./app_da,ta/')
     FileUtils.cd('./app_data/') do
-
       # generate json object
       list_json = []
       list.each { |item| list_json << item.as_hash }
@@ -94,7 +85,7 @@ class App
   def choice_menu(choice) # rubocop:disable Metrics/CyclomaticComplexity
     case choice
     when 1
-      1
+      @things.books.each { |book| puts book }
     when 2
       2
     when 3

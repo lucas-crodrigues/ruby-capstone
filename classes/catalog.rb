@@ -1,5 +1,6 @@
 class Catalog
   attr_reader :books, :albums, :games, :genres, :sources, :authors, :labels
+
   def initialize
     @books = []
     @albums = []
@@ -11,6 +12,7 @@ class Catalog
   end
 
   def add_book(book)
+    puts 'book added'
     @books << book
   end
 
