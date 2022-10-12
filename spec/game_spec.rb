@@ -2,7 +2,7 @@ require_relative '../classes/game'
 
 describe 'Unit Tests for Game' do
   before :each do
-    @game = Game.new('1997/09/24', 'Yes', '2007/04/22')
+    @game = Game.new('1997/09/24', '2007/04/22', 'Yes')
   end
 
   context 'initialize object' do
@@ -20,13 +20,13 @@ describe 'Unit Tests for Game' do
   end
 
   context 'when was game last played' do
-    it 'should be "1997/09/24"' do
-      expect(@game.last_played).to eql '1997/09/24'
+    it 'should be "2007/04/22"' do
+      expect(@game.last_played).to eql '2007/04/22'
     end
 
     context 'when was game published' do
-      it 'should be "2007/04/22"' do
-        expect(@game.publish_date).to eql '2007/04/22'
+      it 'should be "1997/09/24"' do
+        expect(@game.publish_date).to eql '1997/09/24'
       end
     end
     context 'Multiplayer Game' do
