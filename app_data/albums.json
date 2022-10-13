@@ -1,3 +1,47 @@
 [
-
+  {
+    "id": 96,
+    "genre": "",
+    "author": "",
+    "source": "",
+    "label": "",
+    "publish_date": "25/09/0233",
+    "archived": false,
+    "on_spotify": true
+  },
+  {
+    "id": 860,
+    "genre": "",
+    "author": "",
+    "source": "",
+    "label": "",
+    "publish_date": "20/09/2022",
+    "archived": false,
+    "on_spotify": false
+  },
+  {
+    "id": 462,
+    "genre": "",
+    "author": "",
+    "source": "",
+    "label": "",
+    "publish_date": "20/05/2009",
+    "archived": false,
+    "on_spotify": true
+  },
+  {
+    "id": 103,
+    "genre": {
+      "name": "Horor"
+    },
+    "author": "",
+    "source": "",
+    "label": {
+      "title": "l2",
+      "color": "red"
+    },
+    "publish_date": "20/05/1977",
+    "archived": false,
+    "on_spotify": true
+  }
 ]

@@ -15,8 +15,8 @@ class App
     print_menu
   end
 
-  def choose_label
-    list_labels
+  def choose_label(choose: false)
+    list_labels(choose: choose)
     puts 'Choose label by number or enter "n" to add a new label'
     input = gets.chomp
     if input.downcase == 'n'
@@ -26,8 +26,8 @@ class App
     @things.labels[input.to_i] unless @things.labels[input.to_i].nil?
   end
 
-  def choose_genre
-    list_genres
+  def choose_genre(choose: false)
+    list_genres(choose: choose)
     puts 'Choose genre by number or enter "n" to add a new genre'
     input = gets.chomp
     if input.downcase == 'n'
@@ -46,8 +46,10 @@ class App
     puts 'Cover state:'
     cover_state = gets.chomp
     book = Book.new(publish_date, publisher, cover_state)
-    label = choose_label
+    label = choose_label(choose: true)
     book.label = label if label.is_a? Label
+    genre = choose_genre(choose: true)
+    book.genre = genre if genre.is_a? Genre
     @things.add_book(book)
     puts 'Book added successfuly'
     puts 'Press enter to continue'
@@ -62,9 +64,9 @@ class App
     it_is = gets[0].capitalize
     it_is = (it_is == 'Y')
     album = Album.new(publish_date, it_is)
-    label = choose_label
+    label = choose_label(choose: true)
     album.label = label if label.is_a? Label
-    genre = choose_genre
+    genre = choose_genre(choose: true)
     album.genre = genre if genre.is_a? Genre
     @things.add_album(album)
     puts 'Album added successfuly'
@@ -137,9 +139,9 @@ class App
     read_list('albums.json') { |item| @things.add_album(Album.new(item['publish_date'], item['on_spotify'])) }
     read_list('genres.json') { |item| @things.add_genre(Genre.new(item['name'])) }
     read_list('games.json') do |item|
-      @things.add_book(Game.new(item['publish_date'], item['last_played'], item['multiplayer']))
+      @things.add_game(Game.new(item['publish_date'], item['last_played'], item['multiplayer']))
     end
-    read_list('authors.json') { |item| @things.add_label(Author.new(item['first_name'], item['last_name'])) }
+    read_list('authors.json') { |item| @things.add_author(Author.new(item['first_name'], item['last_name'])) }
   end
 
   def read_list(file_name, &block)
@@ -189,24 +191,38 @@ class App
     puts '------------Games List-----------'
     list(@things.games)
     puts '----------End of the List----------'
+    puts 'Press enter to continue'
+    gets.chomp
   end
 
-  def list_labels
+  def list_labels(choose: false)
     puts '------------Labels List-----------'
     list(@things.labels)
     puts '----------End of the List----------'
+    return if choose
+
+    puts 'Press enter to continue'
+    gets.chomp
   end
 
-  def list_genres
+  def list_genres(choose: false)
     puts '------------Genres List-----------'
     list(@things.genres)
     puts '----------End of the List----------'
+    return if choose
+
+    puts 'Press enter to continue'
+    gets.chomp
   end
 
-  def list_authors
+  def list_authors(choose: false)
     puts '------------Authors List-----------'
     list(@things.authors)
     puts '----------End of the List----------'
+    return if choose
+
+    puts 'Press enter to continue'
+    gets.chomp
   end
 
   def options
@@ -241,6 +257,7 @@ class App
       end
       puts "\e[H\e[2J"
       choice_menu(choice)
+      puts "\e[H\e[2J"
     end
   end
 
