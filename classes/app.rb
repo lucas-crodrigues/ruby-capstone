@@ -15,6 +15,18 @@ class App
     print_menu
   end
 
+  def input_date
+    loop do
+      date = gets.chomp
+      format = '%d/%m/%Y'
+      DateTime.strptime(date, format)
+      return date
+    rescue ArgumentError
+      puts 'Please enter a valid date (dd/mm/yyyy):'
+      return input_date
+    end
+  end
+
   def choose_label(choose: false)
     list_labels(choose: choose)
     puts 'Choose label by number or enter "n" to add a new label'
@@ -40,7 +52,7 @@ class App
   def add_book
     puts 'Please fill below book data:'
     puts 'Publish date:'
-    publish_date = gets.chomp
+    publish_date = input_date
     puts 'Publisher:'
     publisher = gets.chomp
     puts 'Cover state:'
@@ -59,7 +71,7 @@ class App
   def add_album
     puts 'Please fill below Music Album data:'
     puts 'Publish date:'
-    publish_date = gets.chomp
+    publish_date = input_date
     puts 'Is it on Spotify? [y/n]:'
     it_is = gets[0].capitalize
     it_is = (it_is == 'Y')
@@ -77,9 +89,9 @@ class App
   def add_game
     puts 'Please fill below game data:'
     puts 'Publish date:'
-    publish_date = gets.chomp
+    publish_date = input_date
     puts 'Last played:'
-    last_played = gets.chomp
+    last_played = input_date
     puts 'Multiplayer:'
     multiplayer = gets.chomp
     game = Game.new(publish_date, last_played, multiplayer)
