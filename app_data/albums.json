@@ -1,6 +1,6 @@
 [
   {
-    "id": 96,
+    "id": 863,
     "genre": "",
     "author": "",
     "source": "",
@@ -10,7 +10,7 @@
     "on_spotify": true
   },
   {
-    "id": 860,
+    "id": 972,
     "genre": "",
     "author": "",
     "source": "",
@@ -20,7 +20,7 @@
     "on_spotify": false
   },
   {
-    "id": 462,
+    "id": 560,
     "genre": "",
     "author": "",
     "source": "",
@@ -30,16 +30,11 @@
     "on_spotify": true
   },
   {
-    "id": 103,
-    "genre": {
-      "name": "Horor"
-    },
+    "id": 677,
+    "genre": "",
     "author": "",
     "source": "",
-    "label": {
-      "title": "l2",
-      "color": "red"
-    },
+    "label": "",
     "publish_date": "20/05/1977",
     "archived": false,
     "on_spotify": true
