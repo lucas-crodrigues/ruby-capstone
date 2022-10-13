@@ -15,8 +15,8 @@ class App
     print_menu
   end
 
-  def choose_label(choose = false)
-    list_labels(choose)
+  def choose_label(choose: false)
+    list_labels(choose: choose)
     puts 'Choose label by number or enter "n" to add a new label'
     input = gets.chomp
     if input.downcase == 'n'
@@ -26,8 +26,8 @@ class App
     @things.labels[input.to_i] unless @things.labels[input.to_i].nil?
   end
 
-  def choose_genre(choose = false)
-    list_genres(choose)
+  def choose_genre(choose: false)
+    list_genres(choose: choose)
     puts 'Choose genre by number or enter "n" to add a new genre'
     input = gets.chomp
     if input.downcase == 'n'
@@ -46,9 +46,9 @@ class App
     puts 'Cover state:'
     cover_state = gets.chomp
     book = Book.new(publish_date, publisher, cover_state)
-    label = choose_label(true)
+    label = choose_label(choose: true)
     book.label = label if label.is_a? Label
-    genre = choose_genre(true)
+    genre = choose_genre(choose: true)
     book.genre = genre if genre.is_a? Genre
     @things.add_book(book)
     puts 'Book added successfuly'
@@ -64,9 +64,9 @@ class App
     it_is = gets[0].capitalize
     it_is = (it_is == 'Y')
     album = Album.new(publish_date, it_is)
-    label = choose_label(true)
+    label = choose_label(choose: true)
     album.label = label if label.is_a? Label
-    genre = choose_genre(true)
+    genre = choose_genre(choose: true)
     album.genre = genre if genre.is_a? Genre
     @things.add_album(album)
     puts 'Album added successfuly'
@@ -195,34 +195,34 @@ class App
     gets.chomp
   end
 
-  def list_labels(choose = false)
+  def list_labels(choose: false)
     puts '------------Labels List-----------'
     list(@things.labels)
     puts '----------End of the List----------'
-    unless choose
-      puts 'Press enter to continue'
-      gets.chomp
-    end
+    return if choose
+
+    puts 'Press enter to continue'
+    gets.chomp
   end
 
-  def list_genres(choose = false)
+  def list_genres(choose: false)
     puts '------------Genres List-----------'
     list(@things.genres)
     puts '----------End of the List----------'
-    unless choose
-      puts 'Press enter to continue'
-      gets.chomp
-    end
+    return if choose
+
+    puts 'Press enter to continue'
+    gets.chomp
   end
 
-  def list_authors(choose = false)
+  def list_authors(choose: false)
     puts '------------Authors List-----------'
     list(@things.authors)
     puts '----------End of the List----------'
-    unless choose
-      puts 'Press enter to continue'
-      gets.chomp
-    end
+    return if choose
+
+    puts 'Press enter to continue'
+    gets.chomp
   end
 
   def options
