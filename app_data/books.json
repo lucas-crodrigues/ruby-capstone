@@ -1,0 +1,57 @@
+[
+  {
+    "id": 729,
+    "genre": "",
+    "author": "",
+    "source": "",
+    "label": "",
+    "publish_date": "01/04/2020",
+    "archived": false,
+    "publisher": null,
+    "cover_state": null
+  },
+  {
+    "id": 745,
+    "genre": "",
+    "author": "",
+    "source": "",
+    "label": "",
+    "publish_date": "25/07/2044",
+    "archived": false,
+    "publisher": "Jafer",
+    "cover_state": "new"
+  },
+  {
+    "id": 370,
+    "genre": "",
+    "author": "",
+    "source": "",
+    "label": "",
+    "publish_date": "20/08/0555",
+    "archived": false,
+    "publisher": "jafer",
+    "cover_state": "old"
+  },
+  {
+    "id": 45,
+    "genre": "",
+    "author": "",
+    "source": "",
+    "label": "",
+    "publish_date": "20/09/2019",
+    "archived": false,
+    "publisher": null,
+    "cover_state": null
+  },
+  {
+    "id": 183,
+    "genre": "",
+    "author": "",
+    "source": "",
+    "label": "",
+    "publish_date": "20/05/1977",
+    "archived": false,
+    "publisher": null,
+    "cover_state": null
+  }
+]

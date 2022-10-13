@@ -1,0 +1,42 @@
+[
+  {
+    "id": 863,
+    "genre": "",
+    "author": "",
+    "source": "",
+    "label": "",
+    "publish_date": "25/09/0233",
+    "archived": false,
+    "on_spotify": true
+  },
+  {
+    "id": 972,
+    "genre": "",
+    "author": "",
+    "source": "",
+    "label": "",
+    "publish_date": "20/09/2022",
+    "archived": false,
+    "on_spotify": false
+  },
+  {
+    "id": 560,
+    "genre": "",
+    "author": "",
+    "source": "",
+    "label": "",
+    "publish_date": "20/05/2009",
+    "archived": false,
+    "on_spotify": true
+  },
+  {
+    "id": 677,
+    "genre": "",
+    "author": "",
+    "source": "",
+    "label": "",
+    "publish_date": "20/05/1977",
+    "archived": false,
+    "on_spotify": true
+  }
+]

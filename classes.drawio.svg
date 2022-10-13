@@ -1,0 +1,39 @@
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="141px" height="121px" viewBox="-0.5 -0.5 141 121" content="&lt;mxfile&gt;&lt;diagram id=&quot;4LFaI2NsOWaKKE0A8wvv&quot; name=&quot;Page-1&quot;&gt;7ZZNj5swEIZ/DVJ7aBUg2Y/jwu62h6xUNYceowmegBXjQcZskv31HYMJYZOVIjW9VJVQxLyesT3zjE2COC133wxUxQsJVEE0EbsgfgyiKL69418n7DthGs06ITdSdFI4CAv5hl6ceLWRAuuRoyVSVlZjMSOtMbMjDYyh7dhtTWq8agU5ngiLDNSp+ksKW3TqXXQ76N9R5kW/cnhz342U0Dv7TOoCBG2PpPgpiFNDZLu3cpeicrXr69LFPX8wetiYQW0vCYi6gFdQjc8tIdr4vdl9n3C9laUCzVayJm0XfmTCdlZIJeawp8YtWFvINr2VFGTkG/uD4qGQBR421vOMJyOPhYv0cxqs2edHn0X4TnqB3chxDrXtd0NKQVXLVbs/F1iCyaVOyFoq+yhqtEDhHXwF0FjcfVjF8MCGexqpRGv27NIHxB6n7+fwxtvboTvCqdeK487o+wB8R+aHuQdo/OK5nWcYnzAMoqRqVkrWBZoTlpymbVEY2mBKigzrmjq4Uql3EiiZazYVrl2Yq5Pkk/Dg5VIK4WZO6goyqfN56/Y4HZSfPl0nEYevVdvwBQciz5BUJLVt058l/HBB0snXWTDjvaZsh4PNj3M3NiXN2wfZ0kGmv0XXAQzWgoXVoTcvQhudR+tRxheSjK8AcnoOZOZqtuSDY1l7aFEarup/rH+E9dIDeg2ssxOsXzLQyxUuwfDt+epuoudPny8jKnANjbL/HtThUr4S4vu/h5jN4RPdjh39z4mffgM=&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs>
+        <clipPath id="mx-clip-4-30-132-30-0">
+            <rect x="4" y="30" width="132" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-4-60-132-30-0">
+            <rect x="4" y="60" width="132" height="30"/>
+        </clipPath>
+        <clipPath id="mx-clip-4-90-132-30-0">
+            <rect x="4" y="90" width="132" height="30"/>
+        </clipPath>
+    </defs>
+    <g>
+        <path d="M 140 30 L 140 13.5 Q 140 0 126.5 0 L 13.5 0 Q 0 0 0 13.5 L 0 30" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 0 30 L 0 106.5 Q 0 120 13.5 120 L 126.5 120 Q 140 120 140 106.5 L 140 30" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 0 30 L 140 30" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" text-anchor="middle" font-size="12px">
+            <text x="69.5" y="19.5">
+                Book
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-4-30-132-30-0)" font-size="12px">
+            <text x="5.5" y="49.5">
+                +publisher
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-4-60-132-30-0)" font-size="12px">
+            <text x="5.5" y="79.5">
+                +cover_state: string
+            </text>
+        </g>
+        <rect x="0" y="90" width="140" height="30" fill="none" stroke="rgb(0, 0, 0)" pointer-events="none"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-4-90-132-30-0)" font-size="12px">
+            <text x="5.5" y="109.5">
+                -can_be_archived?()
+            </text>
+        </g>
+    </g>
+</svg>
